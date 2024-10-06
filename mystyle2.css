@@ -1,0 +1,19 @@
+.nav-link {
+    font-family: Arial, sans-serif;
+    color: #0000ee;
+    text-decoration: none;
+    font-size: 14px;
+    margin: 0 10px;
+}
+
+.nav-link:hover {
+    color: #ff0000;
+}
+
+.nav-link:visited {
+    color: #551a8b;
+}
+
+.nav-link:active {
+    color: #ff00ff;
+}

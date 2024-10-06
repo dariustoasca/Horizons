@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="summary.css">
+    <title>Summary Page</title>
+</head>
+<body>
+    <header>
+        <h1>Your Travel Choices</h1>
+        <nav>
+            <ul class="main-nav">
+                <li><a href="main.html">Home</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Chosen Destinations:</h2>
+            <div id="choices-container" class="container"></div>
+            <div id="empty-message" class="empty-message">List is empty</div>
+            <div id="remove-container">
+                <button class="remove-button" onclick="removeAllChoices()">Remove All</button>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Horizons. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchChoices();
+        });
+    
+        function fetchChoices() {
+            fetch('/get-choices')
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('choices-container');
+                    container.innerHTML = ''; // Clear container before adding new elements
+                    console.log('Fetched choices:', data.choices);
+    
+                    if (data.choices.length === 0) {
+                        document.getElementById('empty-message').style.display = 'block';
+                    } else {
+                        document.getElementById('empty-message').style.display = 'none';
+                        data.choices.forEach(choice => {
+                            const choiceElement = createChoiceElement(choice);
+                            container.appendChild(choiceElement);
+                        });
+                    }
+    
+                    // Hide remove container if no choices are present
+                    toggleRemoveContainer(data.choices.length > 0);
+                })
+                .catch(error => {
+                    console.error('Error fetching choices:', error);
+                });
+        }
+    
+        function createChoiceElement(destination) {
+            const box = document.createElement('div');
+            box.classList.add('box');
+    
+            const title = document.createElement('h1');
+            title.classList.add('title');
+            title.textContent = destination;
+    
+            const img = document.createElement('img');
+            const fileName = destination.toLowerCase().replace(/ /g, '');
+            img.src = `Resources/${fileName}.jpg`;
+            img.alt = destination;
+    
+            const removeButton = document.createElement('button');
+            removeButton.classList.add('remove-button');
+            removeButton.textContent = 'Remove';
+            removeButton.addEventListener('click', () => {
+                removeDestination(destination);
+            });
+    
+            box.appendChild(title);
+            box.appendChild(img);
+            box.appendChild(removeButton);
+    
+            return box;
+        }
+    
+        function removeDestination(destination) {
+            fetch('/remove-choice', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ destination })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log('Removed destination:', destination);
+                    fetchChoices();
+                } else {
+                    console.error('Error removing destination:', data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error removing destination:', error);
+            });
+        }
+
+        function removeAllChoices() {
+            // Assuming a route '/remove-all-choices' to clear all choices
+            fetch('/remove-all-choices', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({})
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log('All choices removed');
+                    fetchChoices();
+                } else {
+                    console.error('Error removing all choices:', data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error removing all choices:', error);
+            });
+        }
+
+        function toggleRemoveContainer(shouldShow) {
+            const removeContainer = document.getElementById('remove-container');
+            console.log('Toggling remove container:', shouldShow);
+            removeContainer.style.display = shouldShow ? 'block' : 'none';
+        }
+    </script>
+</body>
+</html>

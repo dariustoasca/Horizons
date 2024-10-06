@@ -1,0 +1,238 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-image: url(index_background.jpg);
+    background-attachment: fixed; 
+    background-position: center;
+    background-size: cover;
+    background-color: #333;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+}
+
+header {
+    background: linear-gradient(to bottom, #333 20%, #333333ec 35%, #333333bb 50%, transparent 98%);
+    color: white;
+    text-shadow: 1px 1px 9px #000;
+    padding: 20px 0;
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+    letter-spacing: 9%;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+nav .main-nav {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 20px;
+}
+
+nav .wishlist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    position: absolute;
+    right: 20px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+    transition: color 0.3s, text-shadow 0.3s;
+    text-shadow: 0px 0px 3px #000;
+    letter-spacing: 5%;
+}
+
+nav ul li a:hover {
+    text-shadow: 1px 1px 9px #000;
+}
+
+.contact-container {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    margin: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    flex: 1; 
+    margin-top: -20px; 
+    text-align: left;
+}
+
+.contact-container h2 {
+    margin-top: 0;
+}
+
+.contact-form .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.contact-form .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.contact-form .form-group input,
+.contact-form .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.contact-form .form-group textarea {
+    resize: vertical;
+}
+
+main {
+    display: flex;
+    flex: 1;
+    padding: 20px;
+    padding-top: 60px;  
+    padding-bottom: 60px; 
+}
+
+.submit-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-shadow: 1px 1px 9px #000;
+    padding: 10px 0;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+}
+
+
+footer p {
+    margin: 0;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 15px 0;
+    }
+
+    header h1 {
+        font-size: 1.8em;
+    }
+
+    nav {
+        flex-direction: column;
+    }
+
+    nav .main-nav {
+        flex-direction: row;
+        gap: 15px;
+    }
+
+    nav .wishlist {
+        position: relative;
+        margin-top: 10px;
+        width: 100%;
+        padding-left: 10%;
+        justify-content: center;
+    }
+
+    nav ul {
+        justify-content: center;
+        width: 100%;
+    }
+
+    nav ul li {
+        margin: 5px 0;
+    }
+
+    nav ul li a {
+        font-size: 1em;
+    }
+
+    .profile-container {
+        width: 75%;
+    }
+
+    .profile-container h2 {
+        font-size: 1.5em;
+    }
+
+    .profile-form .form-group input {
+        font-size: 14px;
+    }
+
+    .submit-button {
+        font-size: 16px;
+        padding: 10px 24px;
+    }
+
+    .contact-container {
+        width: 75%;
+    }
+}

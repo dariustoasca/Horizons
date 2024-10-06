@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>Main Page</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome To Horizons</h1>
+        <nav>
+            <ul class="main-nav">
+                <li><a href="index.html">Log-Out</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+            <ul class="wishlist">
+                <li><a href="summary.html">Wishlist</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <div class="subtitle">
+                <h2>Plan Your Travel</h2>
+                <p>Welcome, <span id="username"></span>!</p>
+                <p>Choose your next destination:</p>
+            </div>
+            <div class="subttl">
+                <h2>Europe</h2>
+            </div>
+        </section>
+        <div class="container">
+            <button class="box" data-destination="London">
+                <h1 class="title">London</h1>
+                <img src="Resources/london.jpg" alt="London">
+            </button>
+            <button class="box" data-destination="Paris">
+                <h1 class="title">Paris</h1>
+                <img src="Resources/paris.jpg" alt="Paris">
+            </button>
+            <button class="box" data-destination="Rome">
+                <h1 class="title">Rome</h1>
+                <img src="Resources/rome.jpg" alt="Rome">
+            </button>
+            <button class="box" data-destination="Barcelona">
+                <h1 class="title">Barcelona</h1>
+                <img src="Resources/barcelona.jpg" alt="Barcelona">
+            </button>
+            <button class="box" data-destination="Monaco">
+                <h1 class="title">Monaco</h1>
+                <img src="Resources/monaco.jpg" alt="Monaco">
+            </button>
+            <button class="box" data-destination="Amsterdam">
+                <h1 class="title">Amsterdam</h1>
+                <img src="Resources/amsterdam.jpg" alt="Amsterdam">
+            </button>
+            <button class="box" data-destination="Berlin">
+                <h1 class="title">Berlin</h1>
+                <img src="Resources/berlin.jpg" alt="Berlin">
+            </button>
+            <button class="box" data-destination="Prague">
+                <h1 class="title">Prague</h1>
+                <img src="Resources/prague.jpg" alt="Prague">
+            </button>
+        </div>
+        <div class="subttl">
+            <h2>Middle-East</h2>
+        </div>
+        <div class="container">
+            <button class="box" data-destination="Dubai">
+                <h1 class="title">Dubai</h1>
+                <img src="Resources/dubai.jpg" alt="Dubai">
+            </button>
+            <button class="box" data-destination="Istanbul">
+                <h1 class="title">Istanbul</h1>
+                <img src="Resources/istanbul.jpg" alt="Istanbul">
+            </button>
+            <button class="box" data-destination="Abu Dhabi">
+                <h1 class="title">Abu Dhabi</h1>
+                <img src="Resources/abudhabi.jpg" alt="Abu Dhabi">
+            </button>
+            <button class="box" data-destination="Doha">
+                <h1 class="title">Doha</h1>
+                <img src="Resources/doha.jpg" alt="Doha">
+            </button>
+        </div>
+        <div class="subttl">
+            <h2>Asia</h2>
+        </div>
+        <div class="container">
+            <button class="box" data-destination="Bangkok">
+                <h1 class="title">Bangkok</h1>
+                <img src="Resources/bangkok.jpg" alt="Bangkok">
+            </button>
+            <button class="box" data-destination="Singapore">
+                <h1 class="title">Singapore</h1>
+                <img src="Resources/singapore.jpg" alt="Singapore">
+            </button>
+            <button class="box" data-destination="Puket">
+                <h1 class="title">Puket</h1>
+                <img src="Resources/puket.jpg" alt="Puket">
+            </button>
+            <button class="box" data-destination="Tokyo">
+                <h1 class="title">Tokyo</h1>
+                <img src="Resources/tokyo.jpg" alt="Tokyo">
+            </button>
+        </div>
+        <div class="subttl">
+            <h2>America</h2>
+        </div>
+        <div class="container">
+            <button class="box" data-destination="New York">
+                <h1 class="title">New York</h1>
+                <img src="Resources/newyork.jpg" alt="New York">
+            </button>
+            <button class="box" data-destination="Los Angeles">
+                <h1 class="title">Los Angeles</h1>
+                <img src="Resources/losangeles.jpg" alt="Los Angeles">
+            </button>
+            <button class="box" data-destination="Las Vegas">
+                <h1 class="title">Las Vegas</h1>
+                <img src="Resources/lasvegas.jpg" alt="Las Vegas">
+            </button>
+            <button class="box" data-destination="Mexico City">
+                <h1 class="title">Mexico City</h1>
+                <img src="Resources/mexicocity.jpg" alt="Mexico City">
+            </button>
+        </div>
+    </main>
+    <footer>
+        <button id="add-to-cart" type="button" class="submit-button hidden">Add to Wishlist</button>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('/get-username')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.username) {
+                        document.getElementById('username').textContent = data.username;
+                    } else {
+                        window.location.href = '/login.html';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching username:', error);
+                    window.location.href = '/login.html';
+                });
+    
+            const choices = [];
+            const addToCartButton = document.getElementById('add-to-cart');
+            document.querySelectorAll('.box').forEach(box => {
+                box.addEventListener('click', () => {
+                    const destination = box.getAttribute('data-destination');
+                    const index = choices.indexOf(destination);
+                    if (index === -1) {
+                        choices.push(destination);
+                        box.classList.add('selected'); // Optional: add a class to highlight the selection
+                    } else {
+                        choices.splice(index, 1);
+                        box.classList.remove('selected'); // Remove the highlight class
+                    }
+                    // Show/hide the add-to-cart button based on the choices array
+                    if (choices.length > 0) {
+                        addToCartButton.classList.remove('hidden');
+                    } else {
+                        addToCartButton.classList.add('hidden');
+                    }
+                });
+            });
+    
+            addToCartButton.addEventListener('click', () => {
+                if (choices.length > 0) {
+                    fetch('/save-choices', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ choices }),
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            window.location.href = '/summary.html';
+                        } else {
+                            console.error('Error saving choices:', data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error saving choices:', error);
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Horizons</title>
+    <link rel="stylesheet" href="about.css">
+</head>
+<body>
+    <header>
+        <h1>About Us</h1>
+        <nav>
+            <ul>
+                <li><a href="main.html">Home</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="about-container">
+            <h2>Our Story</h2>
+            <p>Horizons was founded in 2010 with a mission to create innovative technology solutions that drive progress and connect people across the globe. Over the past decade, we have grown from a small startup into a leading company in the tech industry, known for our commitment to excellence and our dedication to our customers.</p>
+
+            <h2>Our Mission</h2>
+            <p>Our mission is to empower individuals and organizations through cutting-edge technology. We believe in the power of innovation to transform lives and create a better future for everyone.</p>
+
+            <h2>Our Values</h2>
+            <ul>
+                <li>Innovation: We strive to be at the forefront of technological advancements.</li>
+                <li>Integrity: We conduct our business with the highest ethical standards.</li>
+                <li>Customer Focus: We are committed to exceeding our customers' expectations.</li>
+                <li>Collaboration: We believe in the power of teamwork and partnerships.</li>
+                <li>Excellence: We pursue excellence in everything we do.</li>
+            </ul>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Horizons. All rights reserved.</p>
+    </footer>
+</body>
+</html>

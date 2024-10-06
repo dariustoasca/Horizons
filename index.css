@@ -1,0 +1,126 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url(index_background.jpg);
+    background-color: #0c7ccc;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    text-align: center;
+    animation: fadeIn 1s forwards; 
+}
+
+h1.title {
+    font-family: Verdana, sans-serif;
+    color: rgb(149, 71, 71);
+    text-shadow: 1px 1px 2px #000;
+    font-size: 40px;
+    margin-bottom: 0;
+}
+
+p {
+    font-size: 26px;
+    color: #333;
+    text-shadow: 1px 1px 1px #000;
+    margin-bottom: 20px;
+}
+
+.link-container {
+    margin-bottom: 10px;
+}
+
+.nav-link {
+    font-family: Arial, sans-serif;
+    color: #202054;
+    text-decoration: none;
+    text-shadow: 0px 0px 1px #000000d9;
+    font-size: 20px;
+    display: block;
+    padding: 10px;
+    padding-top: 20px;
+}
+
+.nav-link:hover {
+    color: #690a0a;
+    text-shadow: 0px 0px 2px #000000;
+
+}
+
+.nav-link:visited {
+    color: #551a8b;
+}
+
+.nav-link:active {
+    color: #ff00ff;
+}
+
+.box {
+    background-color: rgba(255, 255, 255, 0.395); 
+    padding: 15px;
+    border-radius: 13px;
+    margin: 8px;
+    box-shadow: 0px -9px 20px rgba(0, 0, 0, 0.235);
+    text-align: center;
+}
+
+.large-box {
+    background: linear-gradient(to bottom, #ffffffb7 30%, #ffffff9c 70%, transparent 100%);
+    width: 70%; 
+    max-width: 700px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.medium-box {
+    width: 45%; 
+    max-width: 500px;
+    padding: 5px;
+}
+
+.small-box {
+    width: 50%;
+    max-width: 300px;
+}
+
+.login-button {
+    margin-top: 15px;
+    width: 50%;
+    padding: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.775);
+    background-color: #ffffffaf; 
+    color: #000000;
+    border: 2px solid #33333355;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 17px;
+    text-align: center;
+}
+
+.login-button:hover {
+    background-color: rgba(255, 255, 255, 0.875); 
+    box-shadow: 0px 0px 13px rgb(0, 0, 0);
+
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0.5;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .login-button{
+        width: 70%;
+    }
+    body{
+        height: 90vh;
+    }
+}

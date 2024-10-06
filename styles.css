@@ -1,0 +1,90 @@
+/* Reset some default styles */
+body, h1, h2, p, ul {
+    margin: 0;
+    padding: 0;
+}
+
+/* Basic styling for the body */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Header styling */
+header {
+    background: #333;
+    color: #fff;
+    padding: 1rem 0;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+header nav ul li {
+    margin: 0 1rem;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+header nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Main content styling */
+main {
+    padding: 2rem;
+}
+
+.about-us {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.about-us h1 {
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+.about-us h2 {
+    margin-top: 1.5rem;
+    font-size: 2rem;
+    color: #333;
+}
+
+.about-us p {
+    margin: 1rem 0;
+}
+
+.about-us ul {
+    list-style: disc inside;
+    margin: 1rem 0;
+    padding-left: 1rem;
+}
+
+.about-us ul li {
+    margin: 0.5rem 0;
+}
+
+/* Footer styling */
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}

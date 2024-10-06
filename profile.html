@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Horizons</title>
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+    <header>
+        <h1>Your Profile</h1>
+        <nav>
+            <ul class="main-nav">
+                <li><a href="main.html">Home</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+            <ul class="wishlist">
+                <li><a href="summary.html">Wishlist</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="profile-container">
+            <h2>Edit Profile</h2>
+            <form action="/updateProfile" method="post" class="profile-form" id="profile-form">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="submit-button">Update Profile</button>
+            </form>
+            <div id="update-message" style="display: none; color: green; margin-top: 10px;">Profile updated successfully!</div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Horizons. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('/getProfile')
+                .then(response => response.json())
+                .then(data => {
+                    if (data) {
+                        document.getElementById('name').value = data.name;
+                        document.getElementById('email').value = data.email;
+                        document.getElementById('username').value = data.username;
+                    } else {
+                        window.location.href = '/login.html';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching profile data:', error);
+                    window.location.href = '/login.html';
+                });
+
+            document.getElementById('profile-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+
+                // Construct JSON object
+                const data = { name, email, username, password };
+
+                // Log data to console for debugging
+                console.log('Sending data:', data);
+
+                fetch('/updateProfile', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById('update-message').style.display = 'block';
+                        setTimeout(() => {
+                            document.getElementById('update-message').style.display = 'none';
+                        }, 3000);
+                    } else {
+                        alert(`Failed to update profile. ${data.message}`);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error updating profile:', error);
+                    alert('An error occurred while updating your profile. Please try again.');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
